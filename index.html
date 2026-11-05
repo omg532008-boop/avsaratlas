@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AvsarAtlas | हर अवसर की सही जानकारी</title>
+  <meta name="description" content="भारत के सभी सरकारी और प्राइवेट जॉब्स, रिजल्ट और एडमिट कार्ड की स्वतः अपडेट होने वाली सूचना।">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Disclaimer Notice -->
+  <div class="advisory-strip">
+    <span id="disclaimerNotice">⚠️ स्वतंत्र सूचना मंच: आवेदन से पूर्व आधिकारिक वेबसाइट से विवरण का मिलान अवश्य करें।</span>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <div class="brand">
+        <h1>Avsar<span>Atlas</span></h1>
+        <small id="brandTagline">हर अवसर की सही जानकारी</small>
+      </div>
+      <div class="actions">
+        <button id="langToggleBtn" class="btn-lang">English</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero & Live Search -->
+  <section class="hero-section">
+    <div class="container">
+      <h2 id="heroHeading">सभी सरकारी व प्राइवेट अवसर एक ही स्थान पर</h2>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="वैकेंसी, परीक्षा या बोर्ड का नाम खोजें...">
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Nav Tabs -->
+  <div class="container tabs-scroll">
+    <button class="tab-btn active" data-tab="all" id="tabAll">सभी (All)</button>
+    <button class="tab-btn" data-tab="govt" id="tabGovt">सरकारी नौकरी</button>
+    <button class="tab-btn" data-tab="result" id="tabResult">रिजल्ट</button>
+    <button class="tab-btn" data-tab="admit_card" id="tabAdmit">एडमिट कार्ड</button>
+    <button class="tab-btn" data-tab="answer_key" id="tabKey">उत्तर कुंजी</button>
+  </div>
+
+  <!-- Main Content Feed Area -->
+  <main class="container">
+    <div class="feed-header">
+      <h3 id="feedTitle">ताज़ा अवसर व अपडेट्स (Live Updates)</h3>
+      <span class="live-indicator">● Auto-Synced</span>
+    </div>
+
+    <!-- Feed Container where JS inserts cards -->
+    <div id="feedContainer" class="cards-grid">
+      <div class="loading-state">डेटा लोड हो रहा है...</div>
+    </div>
+  </main>
+
+  <!-- Community Channel Bar -->
+  <section class="container community-box">
+    <h4>सीधे अपडेट्स पाने के लिए जुड़ें</h4>
+    <div class="social-links">
+      <a href="https://whatsapp.com" target="_blank" class="btn-channel">💬 WhatsApp Channel</a>
+      <a href="https://t.me" target="_blank" class="btn-channel">📢 Telegram Group</a>
+      <a href="https://youtube.com" target="_blank" class="btn-channel">📺 YouTube</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p><strong>AvsarAtlas</strong> - भारत का पारदर्शी व स्वतंत्र अवसर पोर्टल।</p>
+      <p class="footer-note">यह पोर्टल किसी भी सरकारी विभाग से संबद्ध नहीं है। हम केवल सार्वजनिक और आधिकारिक स्रोतों से जानकारी एकत्रित कर प्रस्तुत करते हैं।</p>
+      <p class="copyright">© 2026 AvsarAtlas. 100% Free & Open Information.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+                         </html>
