@@ -1,0 +1,36 @@
+name: AvsarAtlas Auto Ingestion Engine
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          pip install feedparser requests
+
+      - name: Run Auto Ingestion
+        run: |
+          python scripts/auto_fetch.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "bot@avsar-atlas.local"
+          git config --local user.name "AvsarAtlas AutoBot"
+          git add data/jobs.json data/updates.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: New opportunities synced [skip ci]" && git push)
