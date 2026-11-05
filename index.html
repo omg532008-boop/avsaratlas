@@ -3,81 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AvsarAtlas | हर अवसर की सही जानकारी</title>
-  <meta name="description" content="भारत के सभी सरकारी और प्राइवेट जॉब्स, रिजल्ट और एडमिट कार्ड की स्वतः अपडेट होने वाली सूचना।">
+  <title>AvsarAtlas | Sarkari Result, Jobs, Admit Card & Student Portal</title>
+  <meta name="description" content="भारत का सबसे तेज और स्वच्छ सरकारी रिजल्ट व जॉब्स पोर्टल। 10वीं, 12वीं रिजल्ट, एडमिट कार्ड व फ्री आयु कैलकुलेटर।">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Top Disclaimer Notice -->
-  <div class="advisory-strip">
-    <span id="disclaimerNotice">⚠️ स्वतंत्र सूचना मंच: आवेदन से पूर्व आधिकारिक वेबसाइट से विवरण का मिलान अवश्य करें।</span>
+  <!-- Top Safety Strip -->
+  <div class="top-bar">
+    <span>🛡️ 100% सुरक्षित व स्वतंत्र सूचना पोर्टल | सीधे आधिकारिक लिंक</span>
+    <button id="langToggleBtn" class="lang-btn">English</button>
   </div>
 
   <!-- Header -->
-  <header class="navbar">
-    <div class="container nav-content">
+  <header class="header">
+    <div class="container header-flex">
       <div class="brand">
         <h1>Avsar<span>Atlas</span></h1>
-        <small id="brandTagline">हर अवसर की सही जानकारी</small>
+        <p id="brandTagline">हर अवसर की सही जानकारी | Sarkari Updates</p>
       </div>
-      <div class="actions">
-        <button id="langToggleBtn" class="btn-lang">English</button>
+      <div class="search-wrap">
+        <input type="text" id="searchInput" placeholder="10वीं रिजल्ट, SSC, Police, रेलवे खोजें...">
       </div>
     </div>
   </header>
 
-  <!-- Hero & Live Search -->
-  <section class="hero-section">
-    <div class="container">
-      <h2 id="heroHeading">सभी सरकारी व प्राइवेट अवसर एक ही स्थान पर</h2>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="वैकेंसी, परीक्षा या बोर्ड का नाम खोजें...">
-      </div>
-    </div>
-  </section>
-
-  <!-- Category Nav Tabs -->
-  <div class="container tabs-scroll">
-    <button class="tab-btn active" data-tab="all" id="tabAll">सभी (All)</button>
-    <button class="tab-btn" data-tab="govt" id="tabGovt">सरकारी नौकरी</button>
-    <button class="tab-btn" data-tab="result" id="tabResult">रिजल्ट</button>
-    <button class="tab-btn" data-tab="admit_card" id="tabAdmit">एडमिट कार्ड</button>
-    <button class="tab-btn" data-tab="answer_key" id="tabKey">उत्तर कुंजी</button>
+  <!-- Quick Student Facilities Bar -->
+  <div class="container facility-strip">
+    <button class="chip active" data-filter="all">🌟 सभी अपडेट्स</button>
+    <button class="chip" data-filter="10th">🎓 10वीं पास / बोर्ड</button>
+    <button class="chip" data-filter="12th">📜 12वीं पास / इंटर</button>
+    <button class="chip" data-filter="police">👮 पुलिस / डिफेन्स</button>
+    <button class="chip" data-filter="railway">🚂 रेलवे भर्ती</button>
+    <button class="chip tool-btn" id="openCalcBtn">🧮 आयु कैलकुलेटर (Tool)</button>
   </div>
 
-  <!-- Main Content Feed Area -->
-  <main class="container">
-    <div class="feed-header">
-      <h3 id="feedTitle">ताज़ा अवसर व अपडेट्स (Live Updates)</h3>
-      <span class="live-indicator">● Auto-Synced</span>
+  <!-- Age Calculator Popup Modal -->
+  <div id="calcModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeCalcBtn">&times;</span>
+      <h3>🧮 सरकारी फॉर्म आयु कैलकुलेटर (Age Calculator)</h3>
+      <p class="modal-sub">फॉर्म में मांगी गई तारीख के अनुसार अपनी सही उम्र निकालें:</p>
+      <div class="calc-grid">
+        <div>
+          <label>आपकी जन्मतिथि (DOB):</label>
+          <input type="date" id="dobInput">
+        </div>
+        <div>
+          <label>इस तारीख को उम्र चाहिए (Cut-off Date):</label>
+          <input type="date" id="targetDateInput">
+        </div>
+      </div>
+      <button id="doCalcBtn" class="btn-calc">आयु की गणना करें</button>
+      <div id="calcResult" class="calc-result"></div>
     </div>
+  </div>
 
-    <!-- Feed Container where JS inserts cards -->
-    <div id="feedContainer" class="cards-grid">
-      <div class="loading-state">डेटा लोड हो रहा है...</div>
-    </div>
+  <!-- Sarkari 3-Column Super Layout -->
+  <main class="container main-layout">
+    
+    <!-- Column 1: Latest Results (Including 10th/12th Board) -->
+    <section class="col-box">
+      <div class="col-header result-head">
+        <h3>📊 परीक्षा परिणाम (Results)</h3>
+      </div>
+      <div id="resultsList" class="items-list">
+        <div class="loading">लोड हो रहा है...</div>
+      </div>
+    </section>
+
+    <!-- Column 2: Admit Cards -->
+    <section class="col-box">
+      <div class="col-header admit-head">
+        <h3>🎟️ प्रवेश पत्र (Admit Cards)</h3>
+      </div>
+      <div id="admitList" class="items-list">
+        <div class="loading">लोड हो रहा है...</div>
+      </div>
+    </section>
+
+    <!-- Column 3: Latest Jobs -->
+    <section class="col-box">
+      <div class="col-header job-head">
+        <h3>💼 सरकारी नौकरियां (Latest Jobs)</h3>
+      </div>
+      <div id="jobsList" class="items-list">
+        <div class="loading">लोड हो रहा है...</div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Community Channel Bar -->
-  <section class="container community-box">
-    <h4>सीधे अपडेट्स पाने के लिए जुड़ें</h4>
-    <div class="social-links">
-      <a href="https://whatsapp.com" target="_blank" class="btn-channel">💬 WhatsApp Channel</a>
-      <a href="https://t.me" target="_blank" class="btn-channel">📢 Telegram Group</a>
-      <a href="https://youtube.com" target="_blank" class="btn-channel">📺 YouTube</a>
+  <!-- Community Help Strip -->
+  <section class="container alert-strip">
+    <h3>📢 कोई भी भर्ती या रिजल्ट न छूटे!</h3>
+    <p>सीधे आधिकारिक सूचनाएं और पीडीएफ पाने के लिए जॉइन करें:</p>
+    <div class="social-btns">
+      <a href="https://whatsapp.com" target="_blank" class="s-btn wa">💬 WhatsApp ग्रुप</a>
+      <a href="https://t.me" target="_blank" class="s-btn tg">📢 Telegram चैनल</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container footer-content">
-      <p><strong>AvsarAtlas</strong> - भारत का पारदर्शी व स्वतंत्र अवसर पोर्टल।</p>
-      <p class="footer-note">यह पोर्टल किसी भी सरकारी विभाग से संबद्ध नहीं है। हम केवल सार्वजनिक और आधिकारिक स्रोतों से जानकारी एकत्रित कर प्रस्तुत करते हैं।</p>
-      <p class="copyright">© 2026 AvsarAtlas. 100% Free & Open Information.</p>
+    <div class="container">
+      <p><strong>AvsarAtlas</strong> - भारत के छात्रों को समर्पित आधुनिक और स्वच्छ करियर पोर्टल।</p>
+      <p class="foot-disclaimer">अस्वीकरण: हम किसी भी सरकारी एजेंसी से संबद्ध नहीं हैं। सभी जानकारी सार्वजनिक बोर्ड्स और रोजगार समाचार पत्रों से ली जाती है।</p>
     </div>
   </footer>
 
   <script src="app.js"></script>
 </body>
-                         </html>
+  </html>
